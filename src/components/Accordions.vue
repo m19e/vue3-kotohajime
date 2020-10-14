@@ -1,9 +1,14 @@
 <template>
-    <div style="padding: 3em">
+    <div style="padding: 24px">
+        <!-- 一括開閉ボタン -->
         <button @click="toggleAll(showAll)">{{ showAll ? "Collapse" : "Expand" }} All</button>
+        <!-- アコーディオンのデータリストをv-forで順番に展開する -->
+        <!-- listからacc(アコーディオン)とi(インデックス)を同時に取り出す -->
         <div v-for="(acc, i) in list" :key="i">
+            <!-- クリックイベントでtoggleにアコーディオンのインデックスを渡して開閉する -->
             <button @click="toggle(i)">{{ acc.show ? "Collapse" : "Expand" }}</button>
             {{ acc.name }} is {{ acc.show ? "opened" : "closed" }}
+            <!-- show変数で表示・非表示 -->
             <ul v-show="acc.show">
                 <li>list item 1</li>
                 <li>list item 2</li>
@@ -20,7 +25,9 @@ export default Vue.extend({
     name: "Accordions",
     data() {
         return {
+            // 一括開閉の状態
             showAll: false,
+            // アコーディオンのリスト
             list: [
                 { name: "1st Accordion", show: false },
                 { name: "2nd Accordion", show: false },
